@@ -1,7 +1,7 @@
 import React from 'react'
 import { Hero } from './components/Hero'
 import { ContentSection } from './components/ContentSection'
-import { MediaGallery } from './components/MediaGallery'
+import { Game } from './components/Game'
 import { Footer } from './components/Footer'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-amber-50 to-yellow-50">
       <Hero />
       <ContentSection />
-      <MediaGallery />
+      <Game />
       <Footer />
     </div>
   )

@@ -1,0 +1,95 @@
+{
+  "startScene": "intro",
+  "scenes": {
+    "intro": {
+      "id": "intro",
+      "video": "assets/kr3F_BAVJ3TIika8.mp4",
+      "title": "Khởi đầu cuộc hành trình",
+      "description": "Bạn bắt đầu cuộc hành trình tìm hiểu về chủ nghĩa xã hội khoa học",
+      "choices": [
+        {
+          "id": "choice_1",
+          "text": "Tìm hiểu về lý thuyết cơ bản",
+          "nextScene": "theory_basics"
+        },
+        {
+          "id": "choice_2",
+          "text": "Khám phá ứng dụng thực tế",
+          "nextScene": "practical_application"
+        }
+      ]
+    },
+    "theory_basics": {
+      "id": "theory_basics",
+      "video": "assets/525026152_25224336970500100_8476856148373079638_n.mp4",
+      "title": "Lý thuyết cơ bản",
+      "description": "Tìm hiểu các nguyên lý cốt lõi của chủ nghĩa xã hội khoa học",
+      "choices": [
+        {
+          "id": "choice_3",
+          "text": "Nghiên cứu sâu hơn về triết học",
+          "nextScene": "philosophy_deep"
+        },
+        {
+          "id": "choice_4",
+          "text": "Chuyển sang nghiên cứu kinh tế",
+          "nextScene": "economics_study"
+        }
+      ]
+    },
+    "practical_application": {
+      "id": "practical_application",
+      "video": "assets/525026152_25224336970500100_8476856148373079638_n.mp4",
+      "title": "Ứng dụng thực tế",
+      "description": "Xem xét cách áp dụng chủ nghĩa xã hội trong đời sống",
+      "choices": [
+        {
+          "id": "choice_5",
+          "text": "Nghiên cứu về xã hội lý tưởng",
+          "nextScene": "ideal_society"
+        },
+        {
+          "id": "choice_6",
+          "text": "Tìm hiểu về cách mạng",
+          "nextScene": "revolution_path"
+        }
+      ]
+    },
+    "philosophy_deep": {
+      "id": "philosophy_deep",
+      "video": "assets/525026152_25224336970500100_8476856148373079638_n.mp4",
+      "title": "Triết học sâu sắc",
+      "description": "Khám phá các khía cạnh triết học sâu sắc",
+      "isEnding": true,
+      "endingTitle": "Nhà tư tưởng",
+      "endingDescription": "Bạn đã trở thành một nhà tư tưởng sâu sắc về chủ nghĩa xã hội khoa học"
+    },
+    "economics_study": {
+      "id": "economics_study",
+      "video": "assets/525026152_25224336970500100_8476856148373079638_n.mp4",
+      "title": "Nghiên cứu kinh tế",
+      "description": "Phân tích các nguyên lý kinh tế xã hội chủ nghĩa",
+      "isEnding": true,
+      "endingTitle": "Nhà kinh tế học",
+      "endingDescription": "Bạn đã thành thạo trong việc phân tích kinh tế xã hội chủ nghĩa"
+    },
+    "ideal_society": {
+      "id": "ideal_society",
+      "video": "assets/525026152_25224336970500100_8476856148373079638_n.mp4",
+      "title": "Xã hội lý tưởng",
+      "description": "Khám phá mô hình xã hội lý tưởng",
+      "isEnding": true,
+      "endingTitle": "Người xây dựng xã hội",
+      "endingDescription": "Bạn đã có tầm nhìn rõ ràng về xã hội lý tưởng"
+    },
+    "revolution_path": {
+      "id": "revolution_path",
+      "video": "assets/kr3F_BAVJ3TIika8.mp4",
+      "title": "Con đường cách mạng",
+      "description": "Tìm hiểu về quá trình cách mạng xã hội",
+      "isEnding": true,
+      "endingTitle": "Nhà cách mạng",
+      "endingDescription": "Bạn đã hiểu sâu sắc về con đường cách mạng"
+    }
+  }
+}

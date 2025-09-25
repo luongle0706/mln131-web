@@ -24,6 +24,26 @@
   }
 }
 
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(239, 68, 68, 0.6);
+  }
+}
+
+@keyframes choice-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 0.8s ease-out forwards;
 }
@@ -38,6 +58,36 @@
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-choice-appear {
+  animation: choice-appear 0.5s ease-out forwards;
+}
+
+/* Visual Novel specific styles */
+.visual-novel-bg {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.choice-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.choice-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Video player improvements */
+video {
+  object-fit: cover;
+}
+
+.video-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
 }
 
 :root {
