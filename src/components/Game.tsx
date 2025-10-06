@@ -437,10 +437,10 @@ export const Game: React.FC = () => {
       if (hasScene3Choice1B) {
         return 'scene4_good'; // Good ending
       }
-      if (hasScene3Choice2A) {
+      if (hasScene3Choice2A || hasScene3Choice2B) {
         return 'scene4_bad2'; // Bad ending 2
       }
-      if (hasScene3Choice3 || hasScene3Choice2B) {
+      if (hasScene3Choice3 ) {
         return 'scene4_bad1'; // Bad ending 1
       }
     }
