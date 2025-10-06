@@ -83,7 +83,10 @@ export const ChoiceMenu: React.FC<ChoiceMenuProps> = ({
           {onReplay && (
             <button
               onClick={onReplay}
-              className="inline-flex items-center px-3 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors ml-4"
+              className="inline-flex items-center px-3 py-2 text-sm rounded-lg transition-colors ml-4"
+              style={{ backgroundColor: '#2563eb', color: '#ffffff' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1d4ed8'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
               title="Xem lại cảnh này"
             >
               <RotateCcw className="w-4 h-4 mr-1" />

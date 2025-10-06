@@ -45,7 +45,7 @@ const scenesData = {
   "scenes": {
     "scene1": {
       "id": "scene1",
-      "video": "/src/assets/Scene1.mp4",
+      "video": "/videos/Scene1.mp4",
       "title": "Cảnh 1",
       "description": "Chọn một trong ba lựa chọn",
       "choices": [
@@ -68,7 +68,7 @@ const scenesData = {
     },
     "scene1_choice1": {
       "id": "scene1_choice1",
-      "video": "/src/assets/Scene1_choice1.mp4",
+      "video": "/videos/Scene1_choice1.mp4",
       "title": "Kết quả lựa chọn 1",
       "description": "Bạn đã chọn lựa chọn 1",
       "choices": [
@@ -81,7 +81,7 @@ const scenesData = {
     },
     "scene1_choice2": {
       "id": "scene1_choice2",
-      "video": "/src/assets/Scene1_choice2.mp4",
+      "video": "/videos/Scene1_choice2.mp4",
       "title": "Kết quả lựa chọn 2",
       "description": "Bạn đã chọn lựa chọn 2",
       "choices": [
@@ -94,7 +94,7 @@ const scenesData = {
     },
     "scene1_choice3": {
       "id": "scene1_choice3",
-      "video": "/src/assets/Scene1_choice3.mp4",
+      "video": "/videos/Scene1_choice3.mp4",
       "title": "Kết quả lựa chọn 3",
       "description": "Bạn đã chọn lựa chọn 3",
       "choices": [
@@ -107,7 +107,7 @@ const scenesData = {
     },
     "scene1_end": {
       "id": "scene1_end",
-      "video": "/src/assets/Scene1_end.mp4",
+      "video": "/videos/Scene1_end.mp4",
       "title": "Kết thúc Cảnh 1",
       "description": "Cảnh 1 đã kết thúc",
       "choices": [
@@ -120,7 +120,7 @@ const scenesData = {
     },
     "scene2": {
       "id": "scene2",
-      "video": "/src/assets/Scene2.mp4",
+      "video": "/videos/Scene2.mp4",
       "title": "Cảnh 2",
       "description": "Chọn một trong hai lựa chọn",
       "choices": [
@@ -138,7 +138,7 @@ const scenesData = {
     },
     "scene2_choice1": {
       "id": "scene2_choice1",
-      "video": "/src/assets/Scene2_choice1.mp4",
+      "video": "/videos/Scene2_choice1.mp4",
       "title": "Kết quả lựa chọn 1",
       "description": "Bạn đã chọn lựa chọn 1 của Cảnh 2",
       "choices": [
@@ -151,7 +151,7 @@ const scenesData = {
     },
     "scene2_choice2": {
       "id": "scene2_choice2",
-      "video": "/src/assets/Scene2_choice2.mp4",
+      "video": "/videos/Scene2_choice2.mp4",
       "title": "Kết quả lựa chọn 2",
       "description": "Bạn đã chọn lựa chọn 2 của Cảnh 2",
       "choices": [
@@ -164,7 +164,7 @@ const scenesData = {
     },
     "scene3": {
       "id": "scene3",
-      "video": "/src/assets/Scene3.mp4",
+      "video": "/videos/Scene3.mp4",
       "title": "Cảnh 3",
       "description": "Chọn một trong ba lựa chọn",
       "choices": [
@@ -187,7 +187,7 @@ const scenesData = {
     },
     "scene3_choice1_A": {
       "id": "scene3_choice1_A",
-      "video": "/src/assets/Scene3_choice1_A.mp4",
+      "video": "/videos/Scene3_choice1_A.mp4",
       "title": "Kết quả lựa chọn 1 (Đường A)",
       "description": "Bạn đã chọn lựa chọn 1 của Cảnh 3",
       "choices": [
@@ -200,7 +200,7 @@ const scenesData = {
     },
     "scene3_choice1_B": {
       "id": "scene3_choice1_B",
-      "video": "/src/assets/Scene3_choice1_B.mp4",
+      "video": "/videos/Scene3_choice1_B.mp4",
       "title": "Kết quả lựa chọn 1 (Đường B)",
       "description": "Bạn đã chọn lựa chọn 1 của Cảnh 3",
       "choices": [
@@ -213,7 +213,7 @@ const scenesData = {
     },
     "scene3_choice2_A": {
       "id": "scene3_choice2_A",
-      "video": "/src/assets/Scene3_choice2_A.mp4",
+      "video": "/videos/Scene3_choice2_A.mp4",
       "title": "Kết quả lựa chọn 2 (Đường A)",
       "description": "Bạn đã chọn lựa chọn 2 của Cảnh 3",
       "choices": [
@@ -226,7 +226,7 @@ const scenesData = {
     },
     "scene3_choice2_B": {
       "id": "scene3_choice2_B",
-      "video": "/src/assets/Scene3_choice2_B.mp4",
+      "video": "/videos/Scene3_choice2_B.mp4",
       "title": "Kết quả lựa chọn 2 (Đường B)",
       "description": "Bạn đã chọn lựa chọn 2 của Cảnh 3",
       "choices": [
@@ -239,7 +239,7 @@ const scenesData = {
     },
     "scene3_choice3": {
       "id": "scene3_choice3",
-      "video": "/src/assets/Scene3_choice3.mp4",
+      "video": "/videos/Scene3_choice3.mp4",
       "title": "Kết quả lựa chọn 3",
       "description": "Bạn đã chọn lựa chọn 3 của Cảnh 3",
       "choices": [
@@ -252,7 +252,7 @@ const scenesData = {
     },
     "scene3_end": {
       "id": "scene3_end",
-      "video": "/src/assets/Scene3_end.mp4",
+      "video": "/videos/Scene3_end.mp4",
       "title": "Kết thúc Cảnh 3",
       "description": "Cảnh 3 đã kết thúc",
       "choices": [
@@ -265,14 +265,14 @@ const scenesData = {
     },
     "scene4": {
       "id": "scene4",
-      "video": "/src/assets/Scene4.mp4",
+      "video": "/videos/Scene4.mp4",
       "title": "Cảnh 4 - Kết thúc cuối cùng",
       "description": "Kết cục của bạn",
       "choices": []
     },
     "scene4_best": {
       "id": "scene4_best",
-      "video": "/src/assets/Scene4_Best.mp4",
+      "video": "/videos/Scene4_Best.mp4",
       "title": "Kết thúc tốt nhất",
       "description": "Bạn đã đạt được kết thúc tốt nhất",
       "isEnding": true,
@@ -281,7 +281,7 @@ const scenesData = {
     },
     "scene4_good": {
       "id": "scene4_good",
-      "video": "/src/assets/Scene4_Good.mp4",
+      "video": "/videos/Scene4_Good.mp4",
       "title": "Kết thúc tốt",
       "description": "Bạn đã đạt được kết thúc tốt",
       "isEnding": true,
@@ -290,7 +290,7 @@ const scenesData = {
     },
     "scene4_bad1": {
       "id": "scene4_bad1",
-      "video": "/src/assets/Scene4_Bad1.mp4",
+      "video": "/videos/Scene4_Bad1.mp4",
       "title": "Kết thúc xấu 1",
       "description": "Bạn đã đạt được kết thúc xấu",
       "isEnding": true,
@@ -299,7 +299,7 @@ const scenesData = {
     },
     "scene4_bad2": {
       "id": "scene4_bad2",
-      "video": "/src/assets/Scene4_Bad2.mp4",
+      "video": "/videos/Scene4_Bad2.mp4",
       "title": "Kết thúc xấu nhất",
       "description": "Bạn đã đạt được kết thúc xấu nhất",
       "isEnding": true,
@@ -308,7 +308,7 @@ const scenesData = {
     },
     "scene4_bad3": {
       "id": "scene4_bad3",
-      "video": "/src/assets/Scene4_Bad3.mp4",
+      "video": "/videos/Scene4_Bad3.mp4",
       "title": "Kết thúc xấu 3",
       "description": "Bạn đã đạt được kết thúc xấu",
       "isEnding": true,
@@ -478,7 +478,10 @@ export const Game: React.FC = () => {
             <div className="mb-8">
               <button
                 onClick={() => setShowLearningSection(false)}
-                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-all duration-300"
+                className="inline-flex items-center px-6 py-3 font-semibold rounded-full transition-all duration-300"
+                style={{ backgroundColor: '#2563eb', color: '#ffffff' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1d4ed8'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
               >
                 ← Quay lại menu
               </button>
@@ -523,7 +526,8 @@ export const Game: React.FC = () => {
                 <div className="space-y-4">
                   <button
                     onClick={startNewGame}
-                    className="inline-flex items-center px-8 py-4 bg-white text-red-600 font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                    className="inline-flex items-center px-8 py-4 font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                    style={{ backgroundColor: '#ffffff', color: '#dc2626' }}
                   >
                     <Play className="w-6 h-6 mr-2" />
                     Bắt đầu
@@ -533,7 +537,10 @@ export const Game: React.FC = () => {
                     <div>
                       <button
                         onClick={loadGame}
-                        className="px-6 py-3 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-full hover:bg-white/30 transition-all duration-300"
+                        className="px-6 py-3 backdrop-blur-sm font-semibold rounded-full transition-all duration-300"
+                        style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: '#ffffff' }}
+                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)'}
+                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'}
                       >
                         Tiếp tục game đã lưu
                       </button>
@@ -544,12 +551,16 @@ export const Game: React.FC = () => {
                     <div>
                       <button
                         onClick={() => setShowLearningSection(true)}
-                        className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                        className="inline-flex items-center px-8 py-4 font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                        style={{
+                          background: 'linear-gradient(to right, #3b82f6, #a855f7)',
+                          color: '#ffffff'
+                        }}
                       >
-                        <GraduationCap className="w-6 h-6 mr-2" />
+                        <GraduationCap className="w-6 h-6 mr-2" style={{ color: '#ffffff' }} />
                         Phần Học Tập
                       </button>
-                      <p className="text-sm text-red-200 mt-2">Bạn đã mở khóa phần phân tích!</p>
+                      <p className="text-sm mt-2" style={{ color: '#fecaca' }}>Bạn đã mở khóa phần phân tích!</p>
                     </div>
                   )}
                 </div>
@@ -594,15 +605,20 @@ export const Game: React.FC = () => {
               <div className="space-y-4">
                 <button
                   onClick={() => setShowAnalysis(true)}
-                  className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  className="inline-flex items-center px-8 py-3 font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  style={{
+                    background: 'linear-gradient(to right, #22c55e, #10b981)',
+                    color: '#ffffff'
+                  }}
                 >
-                  <BookOpen className="w-5 h-5 mr-2" />
+                  <BookOpen className="w-5 h-5 mr-2" style={{ color: '#ffffff' }} />
                   Xem Phân Tích
                 </button>
 
                 <button
                   onClick={restartGame}
-                  className="inline-flex items-center px-8 py-3 bg-white text-blue-600 font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  className="inline-flex items-center px-8 py-3 font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  style={{ backgroundColor: '#ffffff', color: '#2563eb' }}
                 >
                   <RotateCcw className="w-5 h-5 mr-2" />
                   Chơi lại
@@ -657,18 +673,24 @@ export const Game: React.FC = () => {
             <div className="flex gap-2">
               <button
                 onClick={saveGame}
-                className="p-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+                className="p-3 rounded-lg transition-colors"
+                style={{ backgroundColor: '#16a34a', color: '#ffffff' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#15803d'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#16a34a'}
                 title="Lưu game"
               >
-                <Save className="w-5 h-5" />
+                <Save className="w-5 h-5" style={{ color: '#ffffff' }} />
               </button>
 
               <button
                 onClick={restartGame}
-                className="p-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                className="p-3 rounded-lg transition-colors"
+                style={{ backgroundColor: '#dc2626', color: '#ffffff' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#b91c1c'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#dc2626'}
                 title="Restart game"
               >
-                <RotateCcw className="w-5 h-5" />
+                <RotateCcw className="w-5 h-5" style={{ color: '#ffffff' }} />
               </button>
             </div>
           </div>

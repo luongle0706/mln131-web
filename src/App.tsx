@@ -1,4 +1,3 @@
-import React from 'react'
 import { Hero } from './components/Hero'
 import { ContentSection } from './components/ContentSection'
 import { Game } from './components/Game'

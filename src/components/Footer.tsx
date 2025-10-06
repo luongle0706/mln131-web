@@ -45,7 +45,7 @@ export const Footer: React.FC = () => {
             Dự án học tập môn Triết học - Chủ đề: Gia đình trong thời kỳ quá độ lên xã hội chủ nghĩa
           </p>
           <div className="text-sm text-gray-500">
-            © 2024 - Dự án giáo dục | Made with ❤️ for Philosophy Class
+            © 2024 - Dự án giáo dục môn MLN131 | FPT University 
           </div>
         </div>
       </div>

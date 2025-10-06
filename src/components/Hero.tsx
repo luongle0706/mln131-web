@@ -30,13 +30,30 @@ export const Hero: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={() => scrollToSection('content-section')}
-              className="px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="px-8 py-4 font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              style={{
+                background: 'linear-gradient(to right, #dc2626, #b91c1c)',
+                color: '#ffffff'
+              }}
             >
               Tìm hiểu thêm
             </button>
             <button
               onClick={() => scrollToSection('game-section')}
-              className="px-8 py-4 border-2 border-red-600 text-red-600 font-semibold rounded-full hover:bg-red-600 hover:text-white transition-all duration-300"
+              className="px-8 py-4 font-semibold rounded-full transition-all duration-300"
+              style={{
+                border: '2px solid #dc2626',
+                color: '#dc2626',
+                backgroundColor: 'transparent'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#dc2626';
+                e.currentTarget.style.color = '#ffffff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = '#dc2626';
+              }}
             >
               Chơi game
             </button>

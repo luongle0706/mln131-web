@@ -255,10 +255,10 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
       onMouseLeave={() => setShowControls(false)}
     >
       {title && (
-        <div className={`absolute top-0 left-0 right-0 bg-gradient-to-b from-black/70 to-transparent z-10 p-4 transition-transform duration-300 ${
+        <div className={`absolute top-0 left-0 right-0 bg-gradient-to-b from-black/90 to-transparent z-10 p-4 transition-transform duration-300 ${
           showControls ? 'translate-y-0' : '-translate-y-full'
         }`}>
-          <h3 className="text-white text-xl font-bold">{title}</h3>
+          <h3 className="text-xl font-bold" style={{ color: '#ffffff' }}>{title}</h3>
         </div>
       )}
 
@@ -266,9 +266,9 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         <div className="w-full h-full bg-gradient-to-br from-red-900 to-red-800 flex items-center justify-center">
           <div className="text-center p-8">
             <div className="text-6xl mb-4">🎬</div>
-            <h3 className="text-white text-2xl font-bold mb-2">Video không tải được</h3>
-            <p className="text-red-200 mb-4">Đang chuyển tự động...</p>
-            <div className="text-sm text-red-300">File: {videoSrc}</div>
+            <h3 className="text-2xl font-bold mb-2" style={{ color: '#ffffff' }}>Video không tải được</h3>
+            <p className="mb-4" style={{ color: '#fecaca' }}>Đang chuyển tự động...</p>
+            <div className="text-sm" style={{ color: '#fca5a5' }}>File: {videoSrc}</div>
           </div>
         </div>
       ) : (
@@ -281,40 +281,50 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         />
       )}
 
-      <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-transform duration-300 ${
+      <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 to-transparent p-4 transition-transform duration-300 ${
         showControls ? 'translate-y-0' : 'translate-y-full'
       }`}>
         <div className="flex items-center gap-4">
           <button
             onClick={togglePlay}
-            className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all"
+            className="p-2 backdrop-blur-sm rounded-full transition-all"
+            style={{ backgroundColor: 'rgba(31, 41, 55, 0.9)' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(55, 65, 81, 1)'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(31, 41, 55, 0.9)'}
           >
             {isPlaying ? (
-              <Pause className="w-6 h-6 text-white" />
+              <Pause className="w-6 h-6" style={{ color: '#ffffff' }} />
             ) : (
-              <Play className="w-6 h-6 text-white ml-1" />
+              <Play className="w-6 h-6 ml-1" style={{ color: '#ffffff' }} />
             )}
           </button>
 
           <button
             onClick={handleReplay}
-            className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all"
+            className="p-2 backdrop-blur-sm rounded-full transition-all"
+            style={{ backgroundColor: 'rgba(31, 41, 55, 0.9)' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(55, 65, 81, 1)'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(31, 41, 55, 0.9)'}
             title="Replay scene"
           >
-            <RotateCcw className="w-5 h-5 text-white" />
+            <RotateCcw className="w-5 h-5" style={{ color: '#ffffff' }} />
           </button>
 
           <div
-            className="flex-1 h-2 bg-white/20 rounded-full cursor-pointer"
+            className="flex-1 h-2 rounded-full cursor-pointer"
+            style={{ backgroundColor: 'rgba(55, 65, 81, 0.8)' }}
             onClick={handleProgressClick}
           >
             <div
-              className="h-full bg-red-500 rounded-full transition-all"
-              style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}
+              className="h-full rounded-full transition-all"
+              style={{
+                width: `${duration ? (currentTime / duration) * 100 : 0}%`,
+                backgroundColor: '#ef4444'
+              }}
             />
           </div>
 
-          <div className="text-white text-sm font-mono">
+          <div className="text-sm font-mono" style={{ color: '#ffffff' }}>
             {formatTime(currentTime)} / {formatTime(duration)}
           </div>
 
@@ -325,19 +335,23 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
           >
             <button
               onClick={toggleMute}
-              className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all"
+              className="p-2 backdrop-blur-sm rounded-full transition-all"
+              style={{ backgroundColor: 'rgba(31, 41, 55, 0.9)' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(55, 65, 81, 1)'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(31, 41, 55, 0.9)'}
             >
               {isMuted || volume === 0 ? (
-                <VolumeX className="w-6 h-6 text-white" />
+                <VolumeX className="w-6 h-6" style={{ color: '#ffffff' }} />
               ) : (
-                <Volume2 className="w-6 h-6 text-white" />
+                <Volume2 className="w-6 h-6" style={{ color: '#ffffff' }} />
               )}
             </button>
 
             <div
-              className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 p-2 bg-black/80 backdrop-blur-sm rounded-lg transition-all duration-200 ${
+              className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 p-2 backdrop-blur-sm rounded-lg transition-all duration-200 ${
                 showVolumeSlider ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
               }`}
+              style={{ backgroundColor: 'rgba(17, 24, 39, 0.95)' }}
               onMouseEnter={handleVolumeEnter}
               onMouseLeave={handleVolumeLeave}
             >
@@ -348,21 +362,27 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 step="0.01"
                 value={volume}
                 onChange={handleVolumeChange}
-                className="h-24 w-2 bg-white/20 rounded-full appearance-none cursor-pointer writing-mode-vertical-lr [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer"
-                style={{ writingMode: 'bt-lr', WebkitAppearance: 'slider-vertical' } as React.CSSProperties}
+                className="h-24 w-2 rounded-full appearance-none cursor-pointer writing-mode-vertical-lr [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer"
+                style={{
+                  WebkitAppearance: 'slider-vertical',
+                  backgroundColor: '#374151'
+                } as React.CSSProperties}
               />
             </div>
           </div>
 
           <button
             onClick={toggleFullscreen}
-            className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all"
+            className="p-2 backdrop-blur-sm rounded-full transition-all"
+            style={{ backgroundColor: 'rgba(31, 41, 55, 0.9)' }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(55, 65, 81, 1)'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(31, 41, 55, 0.9)'}
             title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
           >
             {isFullscreen ? (
-              <Minimize className="w-6 h-6 text-white" />
+              <Minimize className="w-6 h-6" style={{ color: '#ffffff' }} />
             ) : (
-              <Maximize className="w-6 h-6 text-white" />
+              <Maximize className="w-6 h-6" style={{ color: '#ffffff' }} />
             )}
           </button>
         </div>
