@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { VideoPlayer } from './VideoPlayer';
 import { ChoiceMenu } from './ChoiceMenu';
-import { Save, RotateCcw, Play, Trophy } from 'lucide-react';
+import { AnalysisContent } from './AnalysisContent';
+import { Save, RotateCcw, Play, Trophy, BookOpen, GraduationCap } from 'lucide-react';
 
 // Types defined inline to avoid import issues
 interface Choice {
@@ -40,97 +41,279 @@ interface GameSaveData {
 
 // Inline scenes data
 const scenesData = {
-  "startScene": "intro",
+  "startScene": "scene1",
   "scenes": {
-    "intro": {
-      "id": "intro",
-      "video": "/src/assets/kr3F_BAVJ3TIika8.mp4",
-      "title": "Khởi đầu cuộc hành trình",
-      "description": "Bạn bắt đầu cuộc hành trình tìm hiểu về chủ nghĩa xã hội khoa học",
+    "scene1": {
+      "id": "scene1",
+      "video": "/src/assets/Scene1.mp4",
+      "title": "Cảnh 1",
+      "description": "Chọn một trong ba lựa chọn",
       "choices": [
         {
           "id": "choice_1",
-          "text": "Tìm hiểu về lý thuyết cơ bản",
-          "nextScene": "theory_basics"
+          "text": "Dì ơi, thời đại bây giờ khác rồi ạ. Vợ chồng con bình đẳng, san sẻ với nhau là chuyện thường. Dì đừng suy nghĩ cổ hủ như vậy.",
+          "nextScene": "scene1_choice1"
         },
         {
           "id": "choice_2",
-          "text": "Khám phá ứng dụng thực tế",
-          "nextScene": "practical_application"
-        }
-      ]
-    },
-    "theory_basics": {
-      "id": "theory_basics",
-      "video": "/src/assets/525026152_25224336970500100_8476856148373079638_n.mp4",
-      "title": "Lý thuyết cơ bản",
-      "description": "Tìm hiểu các nguyên lý cốt lõi của chủ nghĩa xã hội khoa học",
-      "choices": [
+          "text":  "Dạ... cũng có phần như dì nói. Con sẽ lựa lời khuyên bảo lại cô ấy sau ạ.",
+          "nextScene": "scene1_choice2"
+        },
         {
           "id": "choice_3",
-          "text": "Nghiên cứu sâu hơn về triết học",
-          "nextScene": "philosophy_deep"
-        },
-        {
-          "id": "choice_4",
-          "text": "Chuyển sang nghiên cứu kinh tế",
-          "nextScene": "economics_study"
+          "text": "Vợ con đang có dự án gấp thật đó dì. Áp lực lắm ạ. Mong dì thông cảm cho cô ấy.",
+          "nextScene": "scene1_choice3"
         }
       ]
     },
-    "practical_application": {
-      "id": "practical_application",
-      "video": "/src/assets/525026152_25224336970500100_8476856148373079638_n.mp4",
-      "title": "Ứng dụng thực tế",
-      "description": "Xem xét cách áp dụng chủ nghĩa xã hội trong đời sống",
+    "scene1_choice1": {
+      "id": "scene1_choice1",
+      "video": "/src/assets/Scene1_choice1.mp4",
+      "title": "Kết quả lựa chọn 1",
+      "description": "Bạn đã chọn lựa chọn 1",
       "choices": [
         {
-          "id": "choice_5",
-          "text": "Nghiên cứu về xã hội lý tưởng",
-          "nextScene": "ideal_society"
-        },
-        {
-          "id": "choice_6",
-          "text": "Tìm hiểu về cách mạng",
-          "nextScene": "revolution_path"
+          "id": "continue",
+          "text": "Tiếp tục",
+          "nextScene": "scene1_end"
         }
       ]
     },
-    "philosophy_deep": {
-      "id": "philosophy_deep",
-      "video": "/src/assets/525026152_25224336970500100_8476856148373079638_n.mp4",
-      "title": "Triết học sâu sắc",
-      "description": "Khám phá các khía cạnh triết học sâu sắc",
-      "isEnding": true,
-      "endingTitle": "Nhà tư tưởng",
-      "endingDescription": "Bạn đã trở thành một nhà tư tưởng sâu sắc về chủ nghĩa xã hội khoa học"
+    "scene1_choice2": {
+      "id": "scene1_choice2",
+      "video": "/src/assets/Scene1_choice2.mp4",
+      "title": "Kết quả lựa chọn 2",
+      "description": "Bạn đã chọn lựa chọn 2",
+      "choices": [
+        {
+          "id": "continue",
+          "text": "Tiếp tục",
+          "nextScene": "scene1_end"
+        }
+      ]
     },
-    "economics_study": {
-      "id": "economics_study",
-      "video": "/src/assets/525026152_25224336970500100_8476856148373079638_n.mp4",
-      "title": "Nghiên cứu kinh tế",
-      "description": "Phân tích các nguyên lý kinh tế xã hội chủ nghĩa",
-      "isEnding": true,
-      "endingTitle": "Nhà kinh tế học",
-      "endingDescription": "Bạn đã thành thạo trong việc phân tích kinh tế xã hội chủ nghĩa"
+    "scene1_choice3": {
+      "id": "scene1_choice3",
+      "video": "/src/assets/Scene1_choice3.mp4",
+      "title": "Kết quả lựa chọn 3",
+      "description": "Bạn đã chọn lựa chọn 3",
+      "choices": [
+        {
+          "id": "continue",
+          "text": "Tiếp tục",
+          "nextScene": "scene1_end"
+        }
+      ]
     },
-    "ideal_society": {
-      "id": "ideal_society",
-      "video": "/src/assets/525026152_25224336970500100_8476856148373079638_n.mp4",
-      "title": "Xã hội lý tưởng",
-      "description": "Khám phá mô hình xã hội lý tưởng",
-      "isEnding": true,
-      "endingTitle": "Người xây dựng xã hội",
-      "endingDescription": "Bạn đã có tầm nhìn rõ ràng về xã hội lý tưởng"
+    "scene1_end": {
+      "id": "scene1_end",
+      "video": "/src/assets/Scene1_end.mp4",
+      "title": "Kết thúc Cảnh 1",
+      "description": "Cảnh 1 đã kết thúc",
+      "choices": [
+        {
+          "id": "continue_scene2",
+          "text": "Tiếp tục đến Cảnh 2",
+          "nextScene": "scene2"
+        }
+      ]
     },
-    "revolution_path": {
-      "id": "revolution_path",
-      "video": "/src/assets/525026152_25224336970500100_8476856148373079638_n.mp4",
-      "title": "Con đường cách mạng",
-      "description": "Tìm hiểu về quá trình cách mạng xã hội",
+    "scene2": {
+      "id": "scene2",
+      "video": "/src/assets/Scene2.mp4",
+      "title": "Cảnh 2",
+      "description": "Chọn một trong hai lựa chọn",
+      "choices": [
+        {
+          "id": "choice_1",
+          "text": "Mẹ, con biết trong chuyện này Trang cũng có phần sai khi chưa khéo léo. Mẹ đừng giận cô ấy nữa.",
+          "nextScene": "scene2_choice1"
+        },
+        {
+          "id": "choice_2",
+          "text": "Con thấy Trang cũng có cái lý của nó. Mẹ và dì cũng không nên quá khắt khe, cổ hủ như vậy.",
+          "nextScene": "scene2_choice2"
+        }
+      ]
+    },
+    "scene2_choice1": {
+      "id": "scene2_choice1",
+      "video": "/src/assets/Scene2_choice1.mp4",
+      "title": "Kết quả lựa chọn 1",
+      "description": "Bạn đã chọn lựa chọn 1 của Cảnh 2",
+      "choices": [
+        {
+          "id": "continue",
+          "text": "Tiếp tục",
+          "nextScene": "scene3"
+        }
+      ]
+    },
+    "scene2_choice2": {
+      "id": "scene2_choice2",
+      "video": "/src/assets/Scene2_choice2.mp4",
+      "title": "Kết quả lựa chọn 2",
+      "description": "Bạn đã chọn lựa chọn 2 của Cảnh 2",
+      "choices": [
+        {
+          "id": "continue",
+          "text": "Tiếp tục",
+          "nextScene": "scene3"
+        }
+      ]
+    },
+    "scene3": {
+      "id": "scene3",
+      "video": "/src/assets/Scene3.mp4",
+      "title": "Cảnh 3",
+      "description": "Chọn một trong ba lựa chọn",
+      "choices": [
+        {
+          "id": "choice_1",
+          "text": "Anh biết em đang dốc hết sức cho dự án này. Nhưng em à, đám giỗ hôm nay đối với mẹ không chỉ là một mâm cỗ. Nó là tất cả ký ức của mẹ về bà ngoại...",
+          "nextScene": "scene3_choice1"
+        },
+        {
+          "id": "choice_2",
+          "text": "Trang, anh thực sự không hiểu nổi em nữa. Em có thực sự xem trọng gia đình này không vậy?",
+          "nextScene": "scene3_choice2"
+        },
+        {
+          "id": "choice_3",
+          "text": "Thôi em đừng bận tâm. Mẹ và dì hơi quá đáng thôi. Anh hoàn toàn thông cảm cho em. Em mệt rồi, nghỉ ngơi đi.",
+          "nextScene": "scene3_choice3"
+        }
+      ]
+    },
+    "scene3_choice1_A": {
+      "id": "scene3_choice1_A",
+      "video": "/src/assets/Scene3_choice1_A.mp4",
+      "title": "Kết quả lựa chọn 1 (Đường A)",
+      "description": "Bạn đã chọn lựa chọn 1 của Cảnh 3",
+      "choices": [
+        {
+          "id": "continue",
+          "text": "Tiếp tục",
+          "nextScene": "scene3_end"
+        }
+      ]
+    },
+    "scene3_choice1_B": {
+      "id": "scene3_choice1_B",
+      "video": "/src/assets/Scene3_choice1_B.mp4",
+      "title": "Kết quả lựa chọn 1 (Đường B)",
+      "description": "Bạn đã chọn lựa chọn 1 của Cảnh 3",
+      "choices": [
+        {
+          "id": "continue",
+          "text": "Tiếp tục",
+          "nextScene": "scene3_end"
+        }
+      ]
+    },
+    "scene3_choice2_A": {
+      "id": "scene3_choice2_A",
+      "video": "/src/assets/Scene3_choice2_A.mp4",
+      "title": "Kết quả lựa chọn 2 (Đường A)",
+      "description": "Bạn đã chọn lựa chọn 2 của Cảnh 3",
+      "choices": [
+        {
+          "id": "continue",
+          "text": "Tiếp tục",
+          "nextScene": "scene4"
+        }
+      ]
+    },
+    "scene3_choice2_B": {
+      "id": "scene3_choice2_B",
+      "video": "/src/assets/Scene3_choice2_B.mp4",
+      "title": "Kết quả lựa chọn 2 (Đường B)",
+      "description": "Bạn đã chọn lựa chọn 2 của Cảnh 3",
+      "choices": [
+        {
+          "id": "continue",
+          "text": "Tiếp tục",
+          "nextScene": "scene4"
+        }
+      ]
+    },
+    "scene3_choice3": {
+      "id": "scene3_choice3",
+      "video": "/src/assets/Scene3_choice3.mp4",
+      "title": "Kết quả lựa chọn 3",
+      "description": "Bạn đã chọn lựa chọn 3 của Cảnh 3",
+      "choices": [
+        {
+          "id": "continue",
+          "text": "Tiếp tục",
+          "nextScene": "scene4"
+        }
+      ]
+    },
+    "scene3_end": {
+      "id": "scene3_end",
+      "video": "/src/assets/Scene3_end.mp4",
+      "title": "Kết thúc Cảnh 3",
+      "description": "Cảnh 3 đã kết thúc",
+      "choices": [
+        {
+          "id": "continue",
+          "text": "Tiếp tục đến Cảnh 4",
+          "nextScene": "scene4"
+        }
+      ]
+    },
+    "scene4": {
+      "id": "scene4",
+      "video": "/src/assets/Scene4.mp4",
+      "title": "Cảnh 4 - Kết thúc cuối cùng",
+      "description": "Kết cục của bạn",
+      "choices": []
+    },
+    "scene4_best": {
+      "id": "scene4_best",
+      "video": "/src/assets/Scene4_Best.mp4",
+      "title": "Kết thúc tốt nhất",
+      "description": "Bạn đã đạt được kết thúc tốt nhất",
       "isEnding": true,
-      "endingTitle": "Nhà cách mạng",
-      "endingDescription": "Bạn đã hiểu sâu sắc về con đường cách mạng"
+      "endingTitle": "Kết thúc tốt nhất - Best Ending",
+      "endingDescription": "Bạn đã hoàn thành câu chuyện với kết thúc tốt nhất!"
+    },
+    "scene4_good": {
+      "id": "scene4_good",
+      "video": "/src/assets/Scene4_Good.mp4",
+      "title": "Kết thúc tốt",
+      "description": "Bạn đã đạt được kết thúc tốt",
+      "isEnding": true,
+      "endingTitle": "Kết thúc tốt - Good Ending",
+      "endingDescription": "Bạn đã hoàn thành câu chuyện với kết thúc tốt!"
+    },
+    "scene4_bad1": {
+      "id": "scene4_bad1",
+      "video": "/src/assets/Scene4_Bad1.mp4",
+      "title": "Kết thúc xấu 1",
+      "description": "Bạn đã đạt được kết thúc xấu",
+      "isEnding": true,
+      "endingTitle": "Kết thúc xấu - Bad Ending 1",
+      "endingDescription": "Bạn đã hoàn thành câu chuyện với kết thúc xấu!"
+    },
+    "scene4_bad2": {
+      "id": "scene4_bad2",
+      "video": "/src/assets/Scene4_Bad2.mp4",
+      "title": "Kết thúc xấu nhất",
+      "description": "Bạn đã đạt được kết thúc xấu nhất",
+      "isEnding": true,
+      "endingTitle": "Kết thúc xấu nhất - Worst Ending",
+      "endingDescription": "Bạn đã hoàn thành câu chuyện với kết thúc xấu nhất!"
+    },
+    "scene4_bad3": {
+      "id": "scene4_bad3",
+      "video": "/src/assets/Scene4_Bad3.mp4",
+      "title": "Kết thúc xấu 3",
+      "description": "Bạn đã đạt được kết thúc xấu",
+      "isEnding": true,
+      "endingTitle": "Kết thúc xấu - Bad Ending 3",
+      "endingDescription": "Bạn đã hoàn thành câu chuyện với kết thúc xấu!"
     }
   }
 };
@@ -151,6 +334,8 @@ export const Game: React.FC = () => {
   const [showChoices, setShowChoices] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
   const [replayTrigger, setReplayTrigger] = useState(0);
+  const [showAnalysis, setShowAnalysis] = useState(false);
+  const [showLearningSection, setShowLearningSection] = useState(false);
 
   useEffect(() => {
     loadGame();
@@ -198,6 +383,8 @@ export const Game: React.FC = () => {
     setGameState(initialGameState);
     setShowChoices(false);
     setGameEnded(false);
+    setShowAnalysis(false);
+    setShowLearningSection(false);
   };
 
   const handleVideoEnd = () => {
@@ -218,11 +405,56 @@ export const Game: React.FC = () => {
     setReplayTrigger(prev => prev + 1); // Trigger video replay
   };
 
+  const getConditionalScene = (baseScene: string, choice: Choice): string => {
+    // Scene 3 Choice 1: depends on Scene 2 choice
+    if (currentScene?.id === 'scene3' && choice.id === 'choice_1') {
+      const scene2Choice = gameState.choiceHistory.find(h => h.sceneId === 'scene2');
+      return scene2Choice?.choiceId === 'choice_1' ? 'scene3_choice1_A' : 'scene3_choice1_B';
+    }
+
+    // Scene 3 Choice 2: depends on Scene 1 choice
+    if (currentScene?.id === 'scene3' && choice.id === 'choice_2') {
+      const scene1Choice = gameState.choiceHistory.find(h => h.sceneId === 'scene1');
+      return scene1Choice?.choiceId === 'choice_1' ? 'scene3_choice2_A' : 'scene3_choice2_B';
+    }
+
+    // Scene 4: depends on previously visited scenes
+    if (baseScene === 'scene4') {
+      const hasScene3Choice1A = gameState.visitedScenes.includes('scene3_choice1_A');
+      const hasScene3Choice1B = gameState.visitedScenes.includes('scene3_choice1_B');
+      const hasScene3Choice2A = gameState.visitedScenes.includes('scene3_choice2_A');
+      const hasScene3Choice2B = gameState.visitedScenes.includes('scene3_choice2_B');
+      const hasScene3Choice3 = gameState.visitedScenes.includes('scene3_choice3');
+      const hasScene1Choice3 = gameState.choiceHistory.some(h => h.sceneId === 'scene1' && h.choiceId === 'choice_3');
+
+      // Priority order based on requirements
+      if (hasScene3Choice3 && hasScene1Choice3) {
+        return 'scene4_bad3'; // Bad ending 3
+      }
+      if (hasScene3Choice1A) {
+        return 'scene4_best'; // Best ending
+      }
+      if (hasScene3Choice1B) {
+        return 'scene4_good'; // Good ending
+      }
+      if (hasScene3Choice2A) {
+        return 'scene4_bad2'; // Bad ending 2
+      }
+      if (hasScene3Choice3 || hasScene3Choice2B) {
+        return 'scene4_bad1'; // Bad ending 1
+      }
+    }
+
+    return baseScene;
+  };
+
   const handleChoiceSelect = (choice: Choice) => {
+    const nextScene = getConditionalScene(choice.nextScene, choice);
+
     const newGameState: GameState = {
       ...gameState,
-      currentScene: choice.nextScene,
-      visitedScenes: [...new Set([...gameState.visitedScenes, choice.nextScene])],
+      currentScene: nextScene,
+      visitedScenes: [...new Set([...gameState.visitedScenes, nextScene])],
       choiceHistory: [
         ...gameState.choiceHistory,
         {
@@ -239,6 +471,24 @@ export const Game: React.FC = () => {
   };
 
   if (!gameState.gameStarted) {
+    if (showLearningSection) {
+      return (
+        <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-8">
+              <button
+                onClick={() => setShowLearningSection(false)}
+                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-all duration-300"
+              >
+                ← Quay lại menu
+              </button>
+            </div>
+            <AnalysisContent showCloseButton={false} />
+          </div>
+        </section>
+      );
+    }
+
     return (
       <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-6xl mx-auto">
@@ -247,7 +497,7 @@ export const Game: React.FC = () => {
               Trò chơi Tương tác
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hành trình khám phá tri thức thông qua những câu chuyện video tương tác
+              Hành trình khám phá tri thức thông qua trò chơi
             </p>
           </div>
 
@@ -270,28 +520,41 @@ export const Game: React.FC = () => {
                   Khám phá lý thuyết và thực tiễn thông qua những lựa chọn của bạn
                 </p>
 
-                <button
-                  onClick={startNewGame}
-                  className="inline-flex items-center px-8 py-4 bg-white text-red-600 font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-                >
-                  <Play className="w-6 h-6 mr-2" />
-                  Bắt đầu hành trình
-                </button>
+                <div className="space-y-4">
+                  <button
+                    onClick={startNewGame}
+                    className="inline-flex items-center px-8 py-4 bg-white text-red-600 font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  >
+                    <Play className="w-6 h-6 mr-2" />
+                    Bắt đầu
+                  </button>
 
-                {localStorage.getItem(SAVE_KEY) && (
-                  <div className="mt-4">
-                    <button
-                      onClick={loadGame}
-                      className="px-6 py-3 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-full hover:bg-white/30 transition-all duration-300"
-                    >
-                      Tiếp tục game đã lưu
-                    </button>
-                  </div>
-                )}
+                  {localStorage.getItem(SAVE_KEY) && (
+                    <div>
+                      <button
+                        onClick={loadGame}
+                        className="px-6 py-3 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-full hover:bg-white/30 transition-all duration-300"
+                      >
+                        Tiếp tục game đã lưu
+                      </button>
+                    </div>
+                  )}
+
+                  {gameState.completedEndings.length > 0 && (
+                    <div>
+                      <button
+                        onClick={() => setShowLearningSection(true)}
+                        className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                      >
+                        <GraduationCap className="w-6 h-6 mr-2" />
+                        Phần Học Tập
+                      </button>
+                      <p className="text-sm text-red-200 mt-2">Bạn đã mở khóa phần phân tích!</p>
+                    </div>
+                  )}
+                </div>
 
                 <div className="mt-8 text-red-200 text-sm">
-                  <p>🏆 Hoàn thành: {gameState.completedEndings.length} kết thúc</p>
-                  <p>📚 Đã khám phá: {gameState.visitedScenes.length} cảnh</p>
                 </div>
               </div>
             </div>
@@ -328,13 +591,23 @@ export const Game: React.FC = () => {
                 </div>
               </div>
 
-              <button
-                onClick={restartGame}
-                className="inline-flex items-center px-8 py-3 bg-white text-blue-600 font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-              >
-                <RotateCcw className="w-5 h-5 mr-2" />
-                Chơi lại
-              </button>
+              <div className="space-y-4">
+                <button
+                  onClick={() => setShowAnalysis(true)}
+                  className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                >
+                  <BookOpen className="w-5 h-5 mr-2" />
+                  Xem Phân Tích
+                </button>
+
+                <button
+                  onClick={restartGame}
+                  className="inline-flex items-center px-8 py-3 bg-white text-blue-600 font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                >
+                  <RotateCcw className="w-5 h-5 mr-2" />
+                  Chơi lại
+                </button>
+              </div>
 
               <div className="mt-6 text-blue-200 text-sm">
                 <p>🏆 Hoàn thành: {gameState.completedEndings.length} kết thúc</p>
@@ -343,6 +616,15 @@ export const Game: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Analysis Modal */}
+        {showAnalysis && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div className="max-w-6xl w-full max-h-[90vh] overflow-hidden">
+              <AnalysisContent onClose={() => setShowAnalysis(false)} showCloseButton={true} />
+            </div>
+          </div>
+        )}
       </section>
     );
   }
@@ -358,7 +640,7 @@ export const Game: React.FC = () => {
   }
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-white">
+    <section id="game-section" className="py-20 px-4 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
@@ -393,23 +675,21 @@ export const Game: React.FC = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            <VideoPlayer
-              key={currentScene.id}
-              videoSrc={currentScene.video}
-              onVideoEnd={handleVideoEnd}
-              onReplay={handleReplay}
-              replayTrigger={replayTrigger}
-              title={currentScene.title}
-            />
-
+          <VideoPlayer
+            key={currentScene.id}
+            videoSrc={currentScene.video}
+            onVideoEnd={handleVideoEnd}
+            onReplay={handleReplay}
+            replayTrigger={replayTrigger}
+            title={currentScene.title}
+          >
             <ChoiceMenu
               choices={currentScene.choices || []}
               onChoiceSelect={handleChoiceSelect}
               onReplay={handleReplay}
               isVisible={showChoices}
             />
-          </div>
+          </VideoPlayer>
 
           <div className="mt-6 text-center text-gray-500 text-sm">
             <p>Cảnh đã khám phá: {gameState.visitedScenes.length} | Kết thúc hoàn thành: {gameState.completedEndings.length}</p>

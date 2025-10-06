@@ -26,7 +26,7 @@ const sections = [
 
 export const ContentSection: React.FC = () => {
   return (
-    <section className="py-20 px-4 bg-white/80 backdrop-blur-sm">
+    <section id="content-section" className="py-20 px-4 bg-white/80 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
@@ -56,12 +56,6 @@ export const ContentSection: React.FC = () => {
               </p>
             </div>
           ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <button className="px-10 py-4 bg-gradient-to-r from-red-600 to-amber-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-            Khám phá sâu hơn
-          </button>
         </div>
       </div>
     </section>

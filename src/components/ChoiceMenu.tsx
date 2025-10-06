@@ -27,13 +27,13 @@ export const ChoiceMenu: React.FC<ChoiceMenuProps> = ({
   }
 
   return (
-    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-20">
-      <div className="bg-white/95 backdrop-blur-md rounded-2xl p-8 max-w-2xl mx-4 shadow-2xl border border-white/20">
+    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-20">
+      <div className="bg-white/98 backdrop-blur-md rounded-2xl p-8 max-w-2xl mx-4 shadow-2xl border border-gray-200">
         <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold text-gray-800 mb-2">
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">
             Lựa chọn của bạn
           </h3>
-          <p className="text-gray-600">
+          <p className="text-gray-700">
             Hãy chọn con đường bạn muốn khám phá
           </p>
         </div>
@@ -48,7 +48,7 @@ export const ChoiceMenu: React.FC<ChoiceMenuProps> = ({
               className={`w-full p-6 rounded-xl text-left transition-all duration-300 transform hover:scale-105 ${
                 hoveredChoice === choice.id
                   ? 'bg-gradient-to-r from-red-500 to-amber-500 text-white shadow-lg'
-                  : 'bg-white hover:bg-gray-50 text-gray-800 shadow-md hover:shadow-lg'
+                  : 'bg-gray-100 hover:bg-gray-200 text-orange-600 shadow-md hover:shadow-lg'
               }`}
             >
               <div className="flex items-center justify-between">
@@ -57,7 +57,7 @@ export const ChoiceMenu: React.FC<ChoiceMenuProps> = ({
                     <span className={`text-sm font-bold px-3 py-1 rounded-full ${
                       hoveredChoice === choice.id
                         ? 'bg-white/20 text-white'
-                        : 'bg-gray-200 text-gray-600'
+                        : 'bg-gray-300 text-gray-700'
                     }`}>
                       {index + 1}
                     </span>
@@ -67,7 +67,7 @@ export const ChoiceMenu: React.FC<ChoiceMenuProps> = ({
                   </div>
                 </div>
                 <ChevronRight className={`w-6 h-6 transition-transform duration-300 ${
-                  hoveredChoice === choice.id ? 'translate-x-1 text-white' : 'text-gray-400'
+                  hoveredChoice === choice.id ? 'translate-x-1 text-white' : 'text-gray-500'
                 }`} />
               </div>
             </button>
@@ -76,14 +76,14 @@ export const ChoiceMenu: React.FC<ChoiceMenuProps> = ({
 
         <div className="mt-8 flex items-center justify-between">
           <div className="flex-1">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-600">
               Mỗi lựa chọn sẽ dẫn bạn đến một hành trình khác nhau
             </p>
           </div>
           {onReplay && (
             <button
               onClick={onReplay}
-              className="inline-flex items-center px-3 py-2 text-sm bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg transition-colors ml-4"
+              className="inline-flex items-center px-3 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors ml-4"
               title="Xem lại cảnh này"
             >
               <RotateCcw className="w-4 h-4 mr-1" />

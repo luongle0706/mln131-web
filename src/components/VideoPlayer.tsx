@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Play, Pause, Volume2, VolumeX, RotateCcw } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, RotateCcw, Maximize, Minimize } from 'lucide-react';
 
 interface VideoPlayerProps {
   videoSrc: string;
@@ -7,6 +7,7 @@ interface VideoPlayerProps {
   title?: string;
   onReplay?: () => void;
   replayTrigger?: number;
+  children?: React.ReactNode;
 }
 
 export const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -14,14 +15,22 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   onVideoEnd,
   title,
   onReplay,
-  replayTrigger
+  replayTrigger,
+  children
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [hasError, setHasError] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+  const hideControlsTimeout = useRef<NodeJS.Timeout | null>(null);
+  const hideVolumeTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -119,6 +128,60 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
     }
   };
 
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (videoRef.current) {
+      videoRef.current.volume = newVolume;
+      if (newVolume === 0) {
+        setIsMuted(true);
+        videoRef.current.muted = true;
+      } else if (isMuted) {
+        setIsMuted(false);
+        videoRef.current.muted = false;
+      }
+    }
+  };
+
+  const toggleFullscreen = async () => {
+    if (!containerRef.current) return;
+
+    try {
+      if (!isFullscreen) {
+        if (containerRef.current.requestFullscreen) {
+          await containerRef.current.requestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          await document.exitFullscreen();
+        }
+      }
+    } catch (error) {
+      console.error('Fullscreen error:', error);
+    }
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  // Maintain fullscreen state when video source changes
+  useEffect(() => {
+    if (isFullscreen && containerRef.current && !document.fullscreenElement) {
+      // Re-enter fullscreen if we were in fullscreen but lost it due to re-render
+      containerRef.current.requestFullscreen().catch(() => {
+        // Failed to re-enter fullscreen
+      });
+    }
+  }, [videoSrc, isFullscreen]);
+
   const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!videoRef.current) return;
 
@@ -145,16 +208,62 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
+  const handleMouseMove = () => {
+    setShowControls(true);
+
+    if (hideControlsTimeout.current) {
+      clearTimeout(hideControlsTimeout.current);
+    }
+
+    hideControlsTimeout.current = setTimeout(() => {
+      setShowControls(false);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (hideControlsTimeout.current) {
+        clearTimeout(hideControlsTimeout.current);
+      }
+      if (hideVolumeTimeout.current) {
+        clearTimeout(hideVolumeTimeout.current);
+      }
+    };
+  }, []);
+
+  const handleVolumeEnter = () => {
+    setShowVolumeSlider(true);
+    if (hideVolumeTimeout.current) {
+      clearTimeout(hideVolumeTimeout.current);
+    }
+  };
+
+  const handleVolumeLeave = () => {
+    if (hideVolumeTimeout.current) {
+      clearTimeout(hideVolumeTimeout.current);
+    }
+    hideVolumeTimeout.current = setTimeout(() => {
+      setShowVolumeSlider(false);
+    }, 200);
+  };
+
   return (
-    <div className="relative bg-black rounded-lg overflow-hidden shadow-2xl">
+    <div
+      ref={containerRef}
+      className="relative bg-black rounded-lg overflow-hidden shadow-2xl aspect-video flex items-center justify-center"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setShowControls(false)}
+    >
       {title && (
-        <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/70 to-transparent z-10 p-4">
+        <div className={`absolute top-0 left-0 right-0 bg-gradient-to-b from-black/70 to-transparent z-10 p-4 transition-transform duration-300 ${
+          showControls ? 'translate-y-0' : '-translate-y-full'
+        }`}>
           <h3 className="text-white text-xl font-bold">{title}</h3>
         </div>
       )}
 
       {hasError ? (
-        <div className="w-full aspect-video bg-gradient-to-br from-red-900 to-red-800 flex items-center justify-center">
+        <div className="w-full h-full bg-gradient-to-br from-red-900 to-red-800 flex items-center justify-center">
           <div className="text-center p-8">
             <div className="text-6xl mb-4">🎬</div>
             <h3 className="text-white text-2xl font-bold mb-2">Video không tải được</h3>
@@ -166,13 +275,15 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         <video
           ref={videoRef}
           src={videoSrc}
-          className="w-full aspect-video object-cover"
+          className="max-w-full max-h-full object-contain"
           onClick={togglePlay}
           autoPlay
         />
       )}
 
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+      <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-transform duration-300 ${
+        showControls ? 'translate-y-0' : 'translate-y-full'
+      }`}>
         <div className="flex items-center gap-4">
           <button
             onClick={togglePlay}
@@ -207,18 +318,57 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             {formatTime(currentTime)} / {formatTime(duration)}
           </div>
 
-          <button
-            onClick={toggleMute}
-            className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all"
+          <div
+            className="relative"
+            onMouseEnter={handleVolumeEnter}
+            onMouseLeave={handleVolumeLeave}
           >
-            {isMuted ? (
-              <VolumeX className="w-6 h-6 text-white" />
+            <button
+              onClick={toggleMute}
+              className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all"
+            >
+              {isMuted || volume === 0 ? (
+                <VolumeX className="w-6 h-6 text-white" />
+              ) : (
+                <Volume2 className="w-6 h-6 text-white" />
+              )}
+            </button>
+
+            <div
+              className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 p-2 bg-black/80 backdrop-blur-sm rounded-lg transition-all duration-200 ${
+                showVolumeSlider ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
+              }`}
+              onMouseEnter={handleVolumeEnter}
+              onMouseLeave={handleVolumeLeave}
+            >
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={volume}
+                onChange={handleVolumeChange}
+                className="h-24 w-2 bg-white/20 rounded-full appearance-none cursor-pointer writing-mode-vertical-lr [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer"
+                style={{ writingMode: 'bt-lr', WebkitAppearance: 'slider-vertical' } as React.CSSProperties}
+              />
+            </div>
+          </div>
+
+          <button
+            onClick={toggleFullscreen}
+            className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all"
+            title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+          >
+            {isFullscreen ? (
+              <Minimize className="w-6 h-6 text-white" />
             ) : (
-              <Volume2 className="w-6 h-6 text-white" />
+              <Maximize className="w-6 h-6 text-white" />
             )}
           </button>
         </div>
       </div>
+
+      {children}
     </div>
   );
 };
